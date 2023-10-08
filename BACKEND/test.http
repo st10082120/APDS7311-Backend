@@ -1,0 +1,17 @@
+
+//GET http://localhost:3000 HTTP/1.1
+##
+
+POST https://localhost:3000/api/auth HTTP/1.1
+
+Content-Type: application/json
+{
+ "username": "test25r",
+ "password": "youwillneverguess"
+}
+###
+Post https://localhost:3000/api/posts HTTP/1.1
+content-type: application/json
+Authorization: x-auth-token 
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTE2OTVmNGVjNDY1YTE0NzNjY2U0NmEiLCJpYXQiOjE2OTU5NzkxMDh9.ZyRhMHn-M1EQ5dFPJDWMPtTdEybi0aoWBQEnFKsTljU
+
