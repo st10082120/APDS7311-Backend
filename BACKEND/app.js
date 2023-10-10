@@ -10,7 +10,7 @@ const cors = require('cors')
 //const Problem = require('./models/post')
 const cert = fs.readFileSync('keys/certificate.pem');
 const PORT = 3000;
-/*const options = {
+const options = {
     server: { sslCA: cert }
 };
 app.use((reg, res, next) => {
@@ -18,7 +18,7 @@ app.use((reg, res, next) => {
     res.setHeader('Access-Control-Allow-Headers', 'Origin,X-Requested-With,Content-Type,Accept,Authorization');
     res.setHeader('Access-Control-Allow-Methods', '*');
     next();
-});*/
+});
 
 //---------------------------------------------------------------\\
 //DB
