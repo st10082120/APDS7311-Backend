@@ -1,39 +1,24 @@
 const express = require('express')
 const router = express.Router();
-const  { validateUser, userschema}  = require('../models/user');
+const { validateUser, userschema } = require('../models/user');
 //const validateUser = require('../models/user');
 const { hashPassword } = require('../utils/hash');
 const auth = require('../middleware/auth');
 const mongoose = require('mongoose');
 //const { router } = require('./users');
-const User = mongoose.model('User',userschema);
+const User = mongoose.model('User', userschema);
 
 //---------------------------------------------------------------\\
 //create user
 router.post('/', async (req, res) => {
     const { error } = validateUser(req.body);
-    if (error){ 
+    if (error) {
         return res.status(400).json({ error: error.details[0].message });
     }
 
-   // const isUnique = (await User.countDocuments({ username: req.body.username })) === 0;
-    /*const isUnique = (await User.countDocuments({ username: req.body.username })) === 0;
-    if (!isUnique)
-        return res
-            .status(400)
-            .json({ error: 'The Username/Password is not valid' });*/
-            
-            /*const user = new User({ username: req.body.username });
-            user.save((err) => {
-              if (err) {
-                // handle duplicate key error
-                return res.status(400).json({ error: 'The Username/Password is not valid' });
-              }
-              // save successful
-            });*/
-            const existingUser = await User.findOne({ $or: [{ username: req.body.username }, { password: req.body.email },{firstName: req.body.firstName}] });
+    const existingUser = await User.findOne({ $or: [{ username: req.body.username }, { password: req.body.email }, { firstName: req.body.firstName }] });
     if (existingUser) {
-      return res.status(400).json({ error: 'The Username/Email is already taken' });
+        return res.status(400).json({ error: 'The Username/Email is already taken' });
     }
 
     try {
