@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const Joi = require('joi');
 //---------------------------------------------------------------\\
+//Board Schema
 const boardschema = mongoose.Schema(
     {
         title: { type: String, required: true },
@@ -12,6 +13,7 @@ const boardschema = mongoose.Schema(
 module.exports = mongoose.model('Post', boardschema)
 const Post = mongoose.model('Post', boardschema);
 //---------------------------------------------------------------\\
+//Checks board validation
 function validatePost(post) {
     const schema = Joi.object({
         title: Joi.string().min(3).max(30).required(),
