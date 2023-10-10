@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const Joi = require('joi');
+//User Schema
 const userschema = mongoose.Schema(
     {
         username: { type: String, required: true },
@@ -11,6 +12,7 @@ const userschema = mongoose.Schema(
 )
 module.exports = mongoose.model('User', userschema)
 //---------------------------------------------------------------\\
+//validates user schema
 function validateUser(user) {
     const schema = Joi.object({
         username: Joi.string().min(6).max(35).required(),
