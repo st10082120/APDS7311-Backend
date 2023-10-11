@@ -27,12 +27,12 @@ mongoose.connect(process.env.MONGODB, {
     useUnifiedTopology: true,
     writeConcern: { w: 'majority' } // Correct write concern
 })
-.then(() => {
-    console.log('Connected to MongoDB');
-})
-.catch((err) => {
-    console.error('MongoDB connection error:', err);
-});
+    .then(() => {
+        console.log('Connected to MongoDB');
+    })
+    .catch((err) => {
+        console.error('MongoDB connection error:', err);
+    });
 //---------------------------------------------------------------\\
 //middleware
 app.use(helmet());
@@ -54,13 +54,13 @@ const server = https.createServer(
     },
     app
 )
-    .listen(PORT,  () => {
+    .listen(PORT, () => {
         console.log(`HTTPS server is running on port ${PORT}`);
     });
 
-    server.on('error', (error) => {
-        console.error('Server error:', error);
-    });
+server.on('error', (error) => {
+    console.error('Server error:', error);
+});
 
 //---------------------------------------------------------------\\
 module.exports = app;

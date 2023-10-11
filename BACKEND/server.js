@@ -10,17 +10,17 @@ const PORT = 3000;
     cert: fs.readFileSync('keys/certificate.pem')
 },
     app);*/
-    /*const server = https.createServer(
-        {
-            key: fs.readFileSync('./keys/privatekey.pem'),
-            cert: fs.readFileSync('./keys/certificate.pem'),
-            passphrase: 'apds',
-        },
-        ap
-    )
-        .listen(PORT,  () => {
-            console.log(`HTTPS server is running on port ${PORT}`);
-        });*/
+/*const server = https.createServer(
+    {
+        key: fs.readFileSync('./keys/privatekey.pem'),
+        cert: fs.readFileSync('./keys/certificate.pem'),
+        passphrase: 'apds',
+    },
+    ap
+)
+    .listen(PORT,  () => {
+        console.log(`HTTPS server is running on port ${PORT}`);
+    });*/
 
 app.get('/', (req, res) => {
     res.send('hello world express');
