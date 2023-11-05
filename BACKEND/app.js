@@ -9,6 +9,7 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 //const Problem = require('./models/post')
 const cert = fs.readFileSync('keys/certificate.pem');
+
 const PORT = 3000;
 const options = {
     server: { sslCA: cert }
@@ -19,6 +20,7 @@ app.use((reg, res, next) => {
     res.setHeader('Access-Control-Allow-Methods', '*');
     next();
 });
+app.use(cors({ origin: 'http://localhost:4200' }));
 
 //---------------------------------------------------------------\\
 //DB
@@ -36,7 +38,7 @@ mongoose.connect(process.env.MONGODB, {
 //---------------------------------------------------------------\\
 //middleware
 app.use(helmet());
-app.use(cors({ origin: 'https://localhost:3000', optionSuccessStatus: 200 }));
+//app.use(cors({ origin: 'https://localhost:3000', optionSuccessStatus: 200 }));
 app.use(express.json());
 app.use(hsts);
 //---------------------------------------------------------------\\

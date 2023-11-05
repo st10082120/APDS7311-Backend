@@ -10,7 +10,7 @@ const User = mongoose.model('User', userschema);
 
 //---------------------------------------------------------------\\
 //create user
-router.post('/', async (req, res) => {
+router.post('/signup', async (req, res) => {
     const { error } = validateUser(req.body);
     if (error) {
         return res.status(400).json({ error: error.details[0].message });
@@ -23,7 +23,7 @@ router.post('/', async (req, res) => {
 
     try {
         const user = new User(req.body);
-        user.Password = await hashPassword(user.password);
+        user.password = await hashPassword(user.password);
         await user.save();
     } catch (err) {
         return res.status(500).json({ error: err.message });
