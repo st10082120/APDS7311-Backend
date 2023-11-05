@@ -1,0 +1,34 @@
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.menu {
+    margin-top: 20px;
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+}
+
+.nav-link {
+    display: block;
+    padding: 10px;
+    color: #0099ff;
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    color: #0077cc;
+}
+
+.content {
+    margin-top: 20px;
+}

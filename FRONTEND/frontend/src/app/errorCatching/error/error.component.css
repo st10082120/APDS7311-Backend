@@ -1,0 +1,23 @@
+.error-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 200px;
+    background-color: #ffcccc;
+    border: 2px solid #f15e5e;
+    border-radius: 10px;
+    padding: 20px;
+    z-index: 10;
+}
+
+.error-popup h1 {
+    color: #f15e5e;
+    text-align: center;
+}
+
+.error-popup p {
+    color: #333;
+    text-align: center;
+}

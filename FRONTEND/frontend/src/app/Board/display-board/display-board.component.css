@@ -1,0 +1,80 @@
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+}
+
+.post-form {
+    margin-top: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+label {
+    font-weight: bold;
+}
+
+.form-control {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.btn {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #0099ff;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #0099ff;
+}
+
+.btn-danger {
+    background-color: #f15e5e;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #f15e5e;
+}
+
+.posts {
+    margin-top: 20px;
+}
+
+.post {
+    border: 1px solid #0c0c0c;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+.post h2 {
+    color: #0099ff;
+}
+
+.post p {
+    color: #333;
+}
