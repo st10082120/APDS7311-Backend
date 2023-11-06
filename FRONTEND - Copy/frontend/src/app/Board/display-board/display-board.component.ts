@@ -35,7 +35,7 @@ export class DisplayBoardComponent implements OnInit {
   }
   //----------------------------------------------------------------------------------------------------\\
   //deletes a post
-  deletePost(postId: string) {
+  deletePost(postId: string): void {
     this.boardService.deletepost_service(postId).subscribe(
       () => {
 
@@ -55,7 +55,7 @@ export class DisplayBoardComponent implements OnInit {
   }
   //----------------------------------------------------------------------------------------------------\\
   //creates a new post on mongoDB
-  createNewPost(event: Event) {
+  createNewPost(event: Event): void {
     event.preventDefault();
     this.error = false;
 
@@ -70,6 +70,7 @@ export class DisplayBoardComponent implements OnInit {
         this.boardPosts.push(response);
         this.postTitle.setValue('');
         this.description.setValue('');
+        this.clearForm()
       },
       error: (err) => {
         this.error = true;
@@ -77,6 +78,13 @@ export class DisplayBoardComponent implements OnInit {
         console.log(err);
       },
     });
+  }
+  //----------------------------------------------------------------------------------------------------\\
+  //clears the values in the feilds
+  private clearForm(): void {
+    this.postTitle.setValue('');
+    this.description.setValue('');
+    this.departmentCode.setValue('');
   }
   //----------------------------------------------------------------------------------------------------\\
 

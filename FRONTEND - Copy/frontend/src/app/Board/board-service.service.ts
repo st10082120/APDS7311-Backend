@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Subject } from 'rxjs';
+import { Observable, Subject, catchError, throwError } from 'rxjs';
 import { AuthServiceService } from '../auth/auth-service.service';
 import { BoardPost } from '../models/board-post.model';
 import { environment } from '../environments/environment';
@@ -27,9 +27,9 @@ export class BoardServiceService {
   }
   //----------------------------------------------------------------------------------------------------\\
   //gets all the posts
-  getAllPosts() {
+  getAllPosts(): Observable<BoardPost[]> {
     const token = this.authService.token;
-    return this.http.get<BoardPost>(this.BASE_URL, {
+    return this.http.get<BoardPost[]>(this.BASE_URL, {
       headers: {
         'x-auth-token': token ?? '',
       },
@@ -37,7 +37,7 @@ export class BoardServiceService {
   }
   add(title: string, description: string, departmentCode: string) {
     const token = this.authService.token;
-    return this.http.post(this.BASE_URL, {
+    return this.http.post<BoardPost>(this.BASE_URL, {
       title,
       description,
       departmentCode: departmentCode,
@@ -45,10 +45,11 @@ export class BoardServiceService {
       headers: {
         'x-auth-token': token ?? '',
       },
-    });
+    }).pipe(catchError(this.handleError))
   }
   //-------------------------------------------------------------------------------------------------------------\\
-  getboard_service() {
+  //get posts service
+  getPost_service() {
     this.http.get<{ message: string, post: any }>(this.BASE_URL).subscribe((thePost) => {
       this.postsdisplay = thePost.post;
       this.UpdatePostsDisplay.next([...this.postsdisplay])
@@ -56,18 +57,25 @@ export class BoardServiceService {
   }
   //-------------------------------------------------------------------------------------------------------------\\
   //delete service, called when deleteing a post
-  deletepost_service(postid: string) {
+  deletepost_service(postid: string): Observable<BoardPost> {
     return this.http.delete<BoardPost>(`${this.BASE_URL}/${postid}`, {
       headers: {
         'x-auth-token': this.authService.token ?? '',
       },
-    });
+    }).pipe(
+      catchError(this.handleError)
+    );;
+  }
+
+  //-------------------------------------------------------------------------------------------------------------\\
+  //error handelling
+  private handleError(error: any): Observable<never> {
+    console.error('API Error:', error);
+    return throwError('An error occurred');
   }
   //-------------------------------------------------------------------------------------------------------------\\
   getUpdateListener() {
     return this.UpdatePostsDisplay.asObservable();
   }
-
-  //-------------------------------------------------------------------------------------------------------------\\
 }
 //-------------------------------------------End of File---------------------------------------------------------\\

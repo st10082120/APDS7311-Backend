@@ -2,7 +2,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { BoardServiceService } from '../board-service.service';
 import { AuthServiceService } from 'src/app/auth/auth-service.service';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 @Component({
   selector: 'app-create-board',
   templateUrl: './create-board.component.html',
@@ -20,8 +20,8 @@ export class CreateBoardComponent implements OnInit {
 
   ngOnInit(): void {
     this.router.events.subscribe((event) => {
-      if (event.constructor.name === 'NavigationEnd') {
-        this.loggedIn = this.authService.loggedInUser
+      if (event instanceof NavigationEnd) {
+        this.loggedIn = this.authService.loggedInUser;
       }
     });
   }

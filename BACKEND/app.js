@@ -11,6 +11,17 @@ const morgan = require('morgan');
 //const Problem = require('./models/post')
 const cert = fs.readFileSync('keys/certificate.pem');
 
+const corsOptions = {
+  origin: 'http://localhost:4200',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  optionsSuccessStatus: 204,
+};
+// Handle errors  
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).json({ error: 'Something went wrong!' });
+  });
+
 const PORT = 3000;
 const options = {
     server: { sslCA: cert }
@@ -22,7 +33,7 @@ app.use((reg, res, next) => {
     next();
 });
 //cors and morgan implemenetation 
-app.use(cors({ origin: 'http://localhost:4200' }));
+app.use(cors(corsOptions));
 app.use(morgan('dev'));
 //---------------------------------------------------------------\\
 //DB

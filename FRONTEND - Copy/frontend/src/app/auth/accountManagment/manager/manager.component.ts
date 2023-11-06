@@ -35,7 +35,7 @@ export class ManagerComponent implements OnInit {
 
   //-------------------------------------------------------------------------------------\\
   //register function
-  onSignupClick(event: Event) {
+  onSignupClick(event: Event):void {
     this.Error = false;
     event.preventDefault();
     if (!this.username.value || !this.firstName.value || !this.password.value) {
