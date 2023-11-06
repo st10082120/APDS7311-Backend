@@ -13,6 +13,7 @@ import { ErrorComponent } from './errorCatching/error/error.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ErrorinterceptorInterceptor } from './errorCatching/errorinterceptor.interceptor';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +30,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatDialogModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+     MatIconModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   { provide: HTTP_INTERCEPTORS, useClass: ErrorinterceptorInterceptor, multi: true }

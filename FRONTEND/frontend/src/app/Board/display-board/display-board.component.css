@@ -47,18 +47,12 @@ label {
     color: white;
 }
 
-.btn-primary:hover {
-    background-color: #0099ff;
-}
 
 .btn-danger {
     background-color: #f15e5e;
     color: white;
 }
 
-.btn-danger:hover {
-    background-color: #f15e5e;
-}
 
 .posts {
     margin-top: 20px;

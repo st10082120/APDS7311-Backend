@@ -1,5 +1,7 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog'
+import { MAT_DIALOG_DATA} from '@angular/material/dialog'
+import { MatIconModule } from '@angular/material/icon';
+
 
 @Component({
   selector: 'app-error',
@@ -8,8 +10,9 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog'
 })
 export class ErrorComponent implements OnInit {
   @Input('message') errorMessage = '';
+  @Input() icon = 'error'; 
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: { errorMessage: string }) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { errorMessage: string, icon: string }) { }
   ngOnInit(): void {
 
   }

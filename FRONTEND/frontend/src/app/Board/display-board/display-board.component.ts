@@ -2,8 +2,9 @@ import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { BoardServiceService } from '../board-service.service';
 import { AuthServiceService } from 'src/app/auth/auth-service.service';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-display-board',
   templateUrl: './display-board.component.html',
@@ -16,10 +17,10 @@ export class DisplayBoardComponent implements OnInit {
   exceptionMessage = '';
 
   boardPosts: any[] = [];
-  postTitle = new FormControl('');
-  description = new FormControl('');
-  departmentCode = new FormControl('');
-  
+  postTitle = new FormControl('', [Validators.required]);
+  description = new FormControl('', [Validators.required]);
+  departmentCode = new FormControl('', [Validators.required]);
+
   constructor(private userRouter: Router, private authService: AuthServiceService, private boardService: BoardServiceService) { }
   //initiliser
   ngOnInit(): void {
@@ -47,9 +48,9 @@ export class DisplayBoardComponent implements OnInit {
   }
   //----------------------------------------------------------------------------------------------------\\
   //logs the user out using authservice class
-  logout(): void {
+  logoutUser(): void {
     // Call the logout function from service
-    this.authService.logout();
+    this.authService.logoutUser();
     this.userRouter.navigate(['/signin']); // navigates to sign-in page
   }
   //----------------------------------------------------------------------------------------------------\\
@@ -78,7 +79,7 @@ export class DisplayBoardComponent implements OnInit {
     });
   }
   //----------------------------------------------------------------------------------------------------\\
-  
+
 }
 
 //--------------------------------------------End of File--------------------------------------------------------\\

@@ -7,6 +7,7 @@ const helmet = require('helmet');
 const hsts = require('./middleware/hsts');
 const mongoose = require('mongoose')
 const cors = require('cors')
+const morgan = require('morgan');
 //const Problem = require('./models/post')
 const cert = fs.readFileSync('keys/certificate.pem');
 
@@ -20,8 +21,9 @@ app.use((reg, res, next) => {
     res.setHeader('Access-Control-Allow-Methods', '*');
     next();
 });
+//cors and morgan implemenetation 
 app.use(cors({ origin: 'http://localhost:4200' }));
-
+app.use(morgan('dev'));
 //---------------------------------------------------------------\\
 //DB
 mongoose.connect(process.env.MONGODB, {

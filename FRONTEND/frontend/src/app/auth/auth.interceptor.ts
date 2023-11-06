@@ -13,7 +13,7 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(private authservice: AuthServiceService) { }
   //ensures the correct header and token is used
   intercept(request: HttpRequest<unknown>, next: HttpHandler) {
-    const authToken = this.authservice.getToken();
+    const authToken = this.authservice.getCurrentToken();
 
     if (authToken) {
       const authRequest = request.clone({

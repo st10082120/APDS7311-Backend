@@ -3,13 +3,22 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 300px;
-    height: 200px;
+    width: 250px;
+    height: 100px;
     background-color: #ffcccc;
     border: 2px solid #f15e5e;
     border-radius: 10px;
     padding: 20px;
     z-index: 10;
+}
+
+.mat-icon {
+    font-size: 28px;
+    color: black;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 10px;
 }
 
 .error-popup h1 {

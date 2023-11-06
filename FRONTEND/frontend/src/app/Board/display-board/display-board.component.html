@@ -2,7 +2,7 @@
   <h1>Display Board</h1>
   <div class="error" *ngIf="error">{{exceptionMessage}}</div>
   <form (submit)="createNewPost($event)" class="post-form">
-    <button (click)="logout()" class="btn btn-danger">Logout</button>
+    <button (click)="logoutUser()" class="btn btn-danger">Logout User</button>
     <div class="form-group">
       <label for="title">Title</label>
       <input type="text" id="title" class="form-control" [formControl]="postTitle">

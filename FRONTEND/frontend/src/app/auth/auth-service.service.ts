@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { environment } from '../environments/environment';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,24 +13,19 @@ import { tap } from 'rxjs/operators';
 
 export class AuthServiceService {
   token!: string;
-  private readonly BASE_URL = 'https://localhost:3000';
+  private readonly BASE_URL = `${environment.BaseUrl}`;
   constructor(private httpClient: HttpClient) { }
-
-  get loggedInUser(): boolean {
-    const token = localStorage.getItem('x-auth-token');
-    return token ? true : false;
-  }
-
-  //--------------------------------------------------------------------------------------------------------------------\\
-  // returns the auth token
-  getToken() {
+  Users: User[] = [];
+  
+  // returns the authtoken
+  getCurrentToken() {
     return localStorage.getItem('x-auth-token');
   }
   //--------------------------------------------------------------------------------------------------------------------\\
-  //registers the user
-  signup(userusername: string, userpassword: string, userfirstname: string) {
+  //registers the new user
+  signupNewUser(userusername: string, userpassword: string, userfirstname: string) {
 
-    return this.httpClient.post(`${this.BASE_URL}/api/users/signup`, {
+    return this.httpClient.post<User>(`${this.BASE_URL}/api/users/signup`, {
       username: userusername,
       password: userpassword,
       firstName: userfirstname
@@ -36,7 +33,7 @@ export class AuthServiceService {
   }
   //---------------------------------------------------------------------------------\\
   //logs the user in
-  signin(userusername: string, userpassword: string) {
+  signinUser(userusername: string, userpassword: string) {
     return this.httpClient.post(`${this.BASE_URL}/api/auth`, {
       username: userusername,
       password: userpassword,
@@ -44,9 +41,14 @@ export class AuthServiceService {
   }
   //---------------------------------------------------------------------------------\\
   //logs the user out
-  logout(): void {
+  logoutUser(): void {
     localStorage.removeItem('x-auth-token');
   }
-
+  //--------------------------------------------------------------------------------------------------------------------\\
+  //check if a user is logged in
+  get loggedInUser(): boolean {
+    const token = localStorage.getItem('x-auth-token');
+    return token ? true : false;
+  }
 }
 //--------------------------------------------------End of File------------------------------------------------------------------\\

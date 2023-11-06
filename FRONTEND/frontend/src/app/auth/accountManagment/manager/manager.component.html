@@ -1,10 +1,10 @@
 <div class="container">
   <h1>Account Manager</h1>
-  <div class="login" *ngIf="isLoggedIn">
+  <div class="login" *ngIf="LoggedIn">
     <p>Welcome, {{username.value}}</p>
   </div>
-  <div class="signup" *ngIf="!isLoggedIn">
-    <form (submit)="onSignup($event)" class="signup-form">
+  <div class="signup" *ngIf="!LoggedIn">
+    <form (submit)="onSignupClick($event)" class="signup-form">
       <div *ngIf="option === '/signup'">
         <div class="form-group">
           <label for="username">Username: </label>
@@ -29,7 +29,7 @@
         <button type="submit" class="btn">Register User</button>
       </div>
     </form>
-    <form (submit)="OnSignin($event)" class="signin-form">
+    <form (submit)="OnSigninClick($event)" class="signin-form">
       <div *ngIf="option === '/signin'">
         <div class="form-group">
           <label for="username">Username: </label>
