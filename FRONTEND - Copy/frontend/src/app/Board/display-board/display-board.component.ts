@@ -68,8 +68,6 @@ export class DisplayBoardComponent implements OnInit {
     this.boardService.add(this.postTitle.value, this.description.value, this.departmentCode.value).subscribe({
       next: (response) => {
         this.boardPosts.push(response);
-        this.postTitle.setValue('');
-        this.description.setValue('');
         this.clearForm()
       },
       error: (err) => {
